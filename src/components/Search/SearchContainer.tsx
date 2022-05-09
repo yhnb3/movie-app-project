@@ -1,5 +1,8 @@
 import styles from './Search.module.scss'
+
 import { IMovie } from '../../types/movie.d'
+
+import MovieList from '../MovieList'
 
 interface IProps {
   keyword: string
@@ -10,13 +13,7 @@ const SearchContainer = ({ keyword, Search }: IProps) => {
   return (
     <div>
       <h1>{keyword}</h1>
-      <ul className={styles.listContainer}>
-        {Search.map((movie: IMovie) => (
-          <li key={movie.imdbID}>
-            <p>{movie.Title}</p>
-          </li>
-        ))}
-      </ul>
+      <MovieList movies={Search} />
     </div>
   )
 }

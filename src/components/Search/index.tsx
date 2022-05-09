@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, MouseEvent, FormEvent, useCallback } from 'react'
+import { ChangeEvent, useState, MouseEvent, useCallback } from 'react'
 import styles from './Search.module.scss'
 
 import { getMovieApi } from 'services/movie'
@@ -17,7 +17,7 @@ const Search = () => {
     setSearchValue(targetValue)
   }
 
-  const handleInputSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
     setKeyword(searchValue)
     const apikey = process.env.REACT_APP_MOVIE_API_KEY
@@ -26,21 +26,6 @@ const Search = () => {
       s: searchValue,
       page: 1,
     }).then((res) => {
-      console.log(res.data)
-      setMovieList(res.data)
-    })
-  }
-
-  const handleButtonClick = (e: MouseEvent) => {
-    e.preventDefault()
-    setKeyword(searchValue)
-    const apikey = process.env.REACT_APP_MOVIE_API_KEY
-    getMovieApi({
-      apikey,
-      s: searchValue,
-      page: 1,
-    }).then((res) => {
-      console.log(res.data)
       setMovieList(res.data)
     })
   }
@@ -54,8 +39,8 @@ const Search = () => {
     <div className={styles.search}>
       <h1>검색</h1>
       <form>
-        <input type='text' value={searchValue} onChange={handleInputChange} onSubmit={handleInputSubmit} />
-        <button type='submit' onClick={handleButtonClick}>
+        <input type='text' value={searchValue} onChange={handleInputChange} />
+        <button type='submit' onClick={handleSubmit}>
           검색
         </button>
       </form>

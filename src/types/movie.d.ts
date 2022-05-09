@@ -4,6 +4,7 @@ export interface IMovie {
   imdbID: string
   Type: string
   Poster: string
+  isFav?: boolean
 }
 
 export interface IMovieAPIRes {

@@ -7,7 +7,12 @@
     border: 1px solid colors.$BLACK;
   }
 
-  .listContainer {
+  .movieList {
     overflow: hidden;
+    background-color: colors.$WHITE;
+
+    .favorite {
+      background-color: colors.$RED;
+    }
   }
 }

@@ -1,0 +1,10 @@
+@use '/src/styles/constants/colors';
+
+.movieItem {
+  display: flex;
+  justify-content: space-between;
+
+  .favorite {
+    color: colors.$RED;
+  }
+}
