@@ -1,0 +1,13 @@
+@use '/src/styles/constants/colors';
+
+.search {
+  input {
+    height: 30px;
+    padding: 2px;
+    border: 1px solid colors.$BLACK;
+  }
+
+  .listContainer {
+    overflow: hidden;
+  }
+}
