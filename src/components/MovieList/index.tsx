@@ -1,15 +1,26 @@
+import { UIEvent, memo } from 'react'
+
+import styles from './MovieList.module.scss'
+
 import { IMovie } from '../../types/movie.d'
 import MovieItem from './MovieItem'
 
 interface IProps {
-  movies: IMovie[]
+  movieList: IMovie[]
+  addMovies: () => void
 }
 
-const MovieList = ({ movies }: IProps) => {
+const MovieList = ({ movieList, addMovies }: IProps) => {
+  const handleScroll = (event: UIEvent<HTMLDivElement>) => {
+    const { scrollTop, scrollHeight, clientHeight } = event.currentTarget
+    if (clientHeight + scrollTop === scrollHeight) {
+      addMovies()
+    }
+  }
   return (
-    <div>
+    <div className={styles.movieList} onScroll={handleScroll}>
       <ul>
-        {movies.map((movie: IMovie) => (
+        {movieList.map((movie: IMovie) => (
           <li key={movie.imdbID}>
             <MovieItem movie={movie} />
           </li>
@@ -19,4 +30,4 @@ const MovieList = ({ movies }: IProps) => {
   )
 }
 
-export default MovieList
+export default memo(MovieList)

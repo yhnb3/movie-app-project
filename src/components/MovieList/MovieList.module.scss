@@ -1,0 +1,17 @@
+@use '/src/styles/constants/colors';
+
+.movieList {
+  height: 500px;
+  padding: 20px 5px;
+  overflow: auto;
+
+  .movieItem {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+
+    .favorite {
+      color: colors.$RED;
+    }
+  }
+}

@@ -1,15 +1,19 @@
-import { ChangeEvent, useState, MouseEvent, useCallback } from 'react'
+import { ChangeEvent, useState, MouseEvent } from 'react'
+import { useSetRecoilState } from 'recoil'
+
+import { movieListState, pageState } from 'state/searchResult'
+
 import styles from './Search.module.scss'
 
 import { getMovieApi } from 'services/movie'
-import { IMovieAPIRes } from '../../types/movie.d'
 
 import SearchContainer from './SearchContainer'
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [keyword, setKeyword] = useState<string>('')
-  const [movieList, setMovieList] = useState<IMovieAPIRes>()
+  const setMovieList = useSetRecoilState(movieListState)
+  const setPage = useSetRecoilState(pageState)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { currentTarget } = e
@@ -26,14 +30,10 @@ const Search = () => {
       s: searchValue,
       page: 1,
     }).then((res) => {
-      setMovieList(res.data)
+      setMovieList(res.data.Search)
     })
+    setPage(2)
   }
-
-  const SearchResult = useCallback(() => {
-    if (movieList?.Response === 'False' || !movieList) return <p>검색결과가 없습니다.</p>
-    return <SearchContainer keyword={keyword} Search={movieList.Search} />
-  }, [movieList, keyword])
 
   return (
     <div className={styles.search}>
@@ -44,7 +44,7 @@ const Search = () => {
           검색
         </button>
       </form>
-      <SearchResult />
+      <SearchContainer keyword={keyword} />
     </div>
   )
 }

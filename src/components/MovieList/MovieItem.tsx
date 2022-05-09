@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil'
 import { favoriteState } from 'state/favoriteState'
 
 import { IMovie } from '../../types/movie.d'
-import styles from './MovieItem.module.scss'
+import styles from './MovieList.module.scss'
 
 import cx from 'classnames'
 
@@ -12,6 +12,7 @@ interface IProps {
 
 const MovieItem = ({ movie }: IProps) => {
   const [favorites, setFavorites] = useRecoilState(favoriteState)
+
   const favMovieIndex = favorites.findIndex((favoriteMovie: IMovie) => favoriteMovie.imdbID === movie.imdbID)
   const isFav = movie.isFav ? movie.isFav : favMovieIndex !== -1
 
