@@ -1,9 +1,40 @@
 @use '/src/styles/constants/colors';
 
 .search {
-  input {
-    height: 30px;
-    padding: 2px;
-    border: 1px solid colors.$BLACK;
+  .searchForm {
+    display: flex;
+
+    .searchInput {
+      width: 80%;
+      height: 40px;
+      padding: 3px 10px;
+      background-color: colors.$GRAYE;
+      border-radius: 5px;
+    }
+
+    .searchBtn {
+      display: flex;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+
+      .searchIcon {
+        width: 20px;
+        height: 20px;
+        margin: 0 10px;
+      }
+    }
+  }
+}
+
+.searchContainer {
+  .searchTitle {
+    margin: 10px 0;
+    font-size: 15px;
+  }
+
+  .searchKeyword {
+    font-size: 20px;
+    font-weight: 600;
   }
 }

@@ -1,12 +1,13 @@
 import { useCallback } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 import styles from './Search.module.scss'
 
-import { movieListState, pageState } from 'state/searchResult'
+import { movieListState, pageState, isFetchingState } from 'state/searchResult'
 import { getMovieApi } from 'services/movie'
 
 import MovieList from '../MovieList'
+import NoResult from '../NoResult'
 
 interface IProps {
   keyword: string
@@ -15,6 +16,7 @@ interface IProps {
 const SearchContainer = ({ keyword }: IProps) => {
   const [movieList, setMovieList] = useRecoilState(movieListState)
   const [page, setPage] = useRecoilState(pageState)
+  const setIsFetching = useSetRecoilState(isFetchingState)
 
   const fetchData = useCallback(() => {
     const apikey = process.env.REACT_APP_MOVIE_API_KEY
@@ -26,16 +28,32 @@ const SearchContainer = ({ keyword }: IProps) => {
   }, [keyword, page])
 
   const addMovies = useCallback(() => {
-    fetchData().then((res) => {
-      setMovieList((prev) => prev.concat(res.data.Search))
-    })
-    setPage((prev) => prev + 1)
-  }, [fetchData, setMovieList, setPage])
+    try {
+      fetchData().then((res) => {
+        setMovieList((prev) => prev.concat(res.data.Search))
+      })
+      setPage((prev) => prev + 1)
+    } finally {
+      setIsFetching(false)
+    }
+  }, [fetchData, setIsFetching, setMovieList, setPage])
 
-  if (movieList.length === 0) return <p>검색 결과가 없습니다.</p>
+  if (movieList.length === 0) {
+    if (keyword === '') return <NoResult title='검색 결과가 없습니다.' />
+    return (
+      <div className={styles.searchContainer}>
+        <p className={styles.searchTitle}>
+          검색 키워드 : <span className={styles.searchKeyword}>{keyword}</span>
+        </p>
+        <NoResult title='검색 결과가 없습니다.' />
+      </div>
+    )
+  }
   return (
     <div className={styles.searchContainer}>
-      <h1>{keyword}</h1>
+      <p className={styles.searchTitle}>
+        검색 키워드 : <span className={styles.searchKeyword}>{keyword}</span>
+      </p>
       <MovieList movieList={movieList} addMovies={addMovies} />
     </div>
   )

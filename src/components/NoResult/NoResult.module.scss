@@ -1,0 +1,14 @@
+.noResultContainer {
+  height: 500px;
+  padding: 80px 20px;
+
+  .noResultTitle {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .plusIcon {
+    transform: rotate(45deg);
+  }
+}

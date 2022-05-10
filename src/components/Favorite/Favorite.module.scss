@@ -1,0 +1,17 @@
+.favoriteTitle {
+  padding: 5px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.favoriteContainer {
+  height: 500px;
+  padding: 0 5px;
+  overflow: auto;
+
+  li {
+    + li {
+      margin-top: 10px;
+    }
+  }
+}

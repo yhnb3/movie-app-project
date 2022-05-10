@@ -2,16 +2,24 @@
 
 .movieList {
   height: 500px;
-  padding: 20px 5px;
+  padding: 0 5px;
   overflow: auto;
 
-  .movieItem {
-    display: flex;
-    justify-content: space-between;
-    height: 100px;
-
-    .favorite {
-      color: colors.$RED;
+  li {
+    + li {
+      margin-top: 10px;
     }
+  }
+}
+
+.svgLoader {
+  position: relative;
+  display: flex;
+  align-content: space-around;
+  justify-content: center;
+  padding: 10px;
+
+  &.hide {
+    display: none;
   }
 }

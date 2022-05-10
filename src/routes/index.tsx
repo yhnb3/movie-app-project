@@ -8,9 +8,9 @@ import { Search, Favorite, Footer } from '../components'
 const App = () => {
   return (
     <div className={styles.app}>
-      <div className={styles.container}>
-        <RecoilRoot>
-          <Router>
+      <RecoilRoot>
+        <Router>
+          <div className={styles.container}>
             <main>
               <Routes>
                 <Route path='/' element={<Search />} />
@@ -18,9 +18,9 @@ const App = () => {
               </Routes>
             </main>
             <Footer />
-          </Router>
-        </RecoilRoot>
-      </div>
+          </div>
+        </Router>
+      </RecoilRoot>
     </div>
   )
 }
