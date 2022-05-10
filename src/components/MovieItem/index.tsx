@@ -1,4 +1,6 @@
 import { useRecoilState, useRecoilValue } from 'recoil'
+import { useEffect } from 'react'
+import store from 'store'
 
 import { favoriteState } from 'state/favoriteState'
 import { IMovie } from 'types/movie.d'
@@ -14,6 +16,10 @@ interface IProps {
 const MovieItem = ({ movie, idx }: IProps) => {
   const [favorites, setFavorites] = useRecoilState(favoriteState)
   const movieList = useRecoilValue(movieListState)
+
+  useEffect(() => {
+    store.set('favorites', favorites)
+  }, [favorites])
 
   const movieIdx = movieList.findIndex(
     (prevMovie: IMovie, prevIdx: number) => prevMovie.imdbID === movie.imdbID && prevIdx < idx

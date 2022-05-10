@@ -1,4 +1,4 @@
-import styles from './Favorite.module.scss'
+import styles from './favorite.module.scss'
 import FavoriteContainer from './FavoriteContainer'
 
 const Favorite = () => {

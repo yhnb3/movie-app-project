@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
-import styles from './Search.module.scss'
+import styles from './search.module.scss'
 
 import { movieListState, pageState, isFetchingState } from 'state/searchResult'
 import { getMovieApi } from 'services/movie'
