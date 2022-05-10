@@ -1,9 +1,9 @@
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { favoriteState } from 'state/favoriteState'
 
-import { IMovie } from '../../types/movie.d'
-import styles from './MovieItem.module.scss'
-import { HeartFillIcon, HeartEmptyIcon } from '../../assets/svgs'
+import { favoriteState } from 'state/favoriteState'
+import { IMovie } from 'types/movie.d'
+import styles from './movieItem.module.scss'
+import { HeartFillIcon, HeartEmptyIcon } from 'assets/svgs'
 import { movieListState } from 'state/searchResult'
 
 interface IProps {
@@ -19,12 +19,11 @@ const MovieItem = ({ movie, idx }: IProps) => {
     (prevMovie: IMovie, prevIdx: number) => prevMovie.imdbID === movie.imdbID && prevIdx < idx
   )
   const poster = movie.Poster === 'N/A' ? '/no_image.png' : movie.Poster
-  const favMovieIndex = favorites.findIndex((favoriteMovie: IMovie) => favoriteMovie.imdbID === movie.imdbID)
-  const isFav = movie.isFav ? movie.isFav : favMovieIndex !== -1
+  const isFav = favorites.find((favoriteMovie: IMovie) => favoriteMovie.imdbID === movie.imdbID)
 
   const handleFavorite = () => {
     if (isFav) {
-      setFavorites((prevList) => [...prevList.slice(0, favMovieIndex), ...prevList.slice(favMovieIndex + 1)])
+      setFavorites((prevList) => prevList.filter((prevMovie) => movie.imdbID === prevMovie.imdbID))
     } else {
       setFavorites((prveList) => [...prveList, { ...movie, isFav: true }])
     }

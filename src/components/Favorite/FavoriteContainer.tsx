@@ -1,7 +1,7 @@
 import NoResult from 'components/NoResult'
 import { useRecoilValue } from 'recoil'
 import { favoriteState } from 'state/favoriteState'
-import styles from './Favorite.module.scss'
+import styles from './favorite.module.scss'
 
 import { IMovie } from 'types/movie'
 

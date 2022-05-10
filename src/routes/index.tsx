@@ -1,26 +1,24 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { RecoilRoot } from 'recoil'
+import { Routes, Route } from 'react-router-dom'
 
 import styles from './Routes.module.scss'
 
-import { Search, Favorite, Footer } from '../components'
+import { Search, Favorite } from 'components'
+import GNB from './_shared/GNB'
 
 const App = () => {
   return (
     <div className={styles.app}>
-      <RecoilRoot>
-        <Router>
-          <div className={styles.container}>
-            <main>
-              <Routes>
-                <Route path='/' element={<Search />} />
-                <Route path='favorite' element={<Favorite />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </Router>
-      </RecoilRoot>
+      <div className={styles.container}>
+        <main>
+          <Routes>
+            <Route path='/' element={<Search />} />
+            <Route path='favorite' element={<Favorite />} />
+          </Routes>
+        </main>
+        <footer>
+          <GNB />
+        </footer>
+      </div>
     </div>
   )
 }

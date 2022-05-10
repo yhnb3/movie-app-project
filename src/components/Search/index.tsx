@@ -3,7 +3,7 @@ import { useSetRecoilState, useRecoilState } from 'recoil'
 
 import { movieListState, pageState, searchTotalState, keywordState } from 'state/searchResult'
 
-import styles from './Search.module.scss'
+import styles from './search.module.scss'
 import { SearchIcon } from 'assets/svgs'
 
 import { getMovieApi } from 'services/movie'
@@ -43,7 +43,7 @@ const Search = () => {
       })
       setPage(2)
     } catch (error: any) {
-      console.error(error)
+      Error('404')
     }
   }
 

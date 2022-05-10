@@ -1,6 +1,6 @@
 import { UIEvent, memo, useRef, useEffect } from 'react'
 
-import styles from './MovieList.module.scss'
+import styles from './movieList.module.scss'
 
 import cx from 'classnames'
 
