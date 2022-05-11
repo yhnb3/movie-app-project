@@ -25,7 +25,7 @@ const MovieList = ({ movieList, addMovies }: IProps) => {
   const handleScroll = (event: UIEvent<HTMLDivElement>) => {
     if (searchTotal === movieList.length) return
     const { scrollTop, scrollHeight, clientHeight } = event.currentTarget
-    if (clientHeight + scrollTop >= scrollHeight) {
+    if (clientHeight + scrollTop + 0.5 >= scrollHeight) {
       if (!isFetching) {
         setIsFetching(true)
         addMovies()

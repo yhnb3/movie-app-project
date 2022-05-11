@@ -24,6 +24,7 @@ const Item = ({ movie }: IProps) => {
   const handleFavorite = () => {
     if (isFav) {
       setFavorites((prevList) => prevList.filter((prevMovie) => movie.imdbID !== prevMovie.imdbID))
+      setModal(false)
     } else {
       setFavorites((prveList) => [...prveList, { ...movie, isFav: true }])
     }
