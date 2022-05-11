@@ -3,7 +3,7 @@
 .movieItem {
   display: flex;
   height: 100px;
-  background-color: colors.$GRAYA;
+  background-color: colors.$GRAYE;
   border-radius: 5px;
 
   .poster {
@@ -14,8 +14,9 @@
   }
 
   .infoBox {
-    width: 200px;
+    width: 180px;
     padding: 20px 10px;
+    text-align: left;
 
     .title {
       overflow: hidden;
@@ -43,5 +44,8 @@
   .iconBox {
     display: flex;
     align-items: center;
+    height: 100%;
+    padding: 0 10px;
+    fill: colors.$RED;
   }
 }
