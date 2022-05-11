@@ -1,4 +1,6 @@
-import { UIEvent, memo, useRef, useEffect } from 'react'
+import { memo, useRef, useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { useMount } from 'hooks'
 
 import styles from './movieList.module.scss'
 
@@ -8,40 +10,37 @@ import { IMovie } from '../../types/movie.d'
 import MovieItem from '../MovieItem'
 import Loading from '../Loading'
 
-import { isFetchingState, pageState, searchTotalState } from '../../state/searchResult'
+import { pageState, searchTotalState } from '../../state/searchResult'
 import { useRecoilState, useRecoilValue } from 'recoil'
 
 interface IProps {
   movieList: IMovie[]
-  addMovies: () => void
 }
 
-const MovieList = ({ movieList, addMovies }: IProps) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isFetching, setIsFetching] = useRecoilState(isFetchingState)
+const MovieList = ({ movieList }: IProps) => {
+  const containerRef = useRef<HTMLDivElement>(null)
   const searchTotal = useRecoilValue(searchTotalState)
-  const page = useRecoilValue(pageState)
+  const [page, setPage] = useRecoilState(pageState)
 
-  const handleScroll = (event: UIEvent<HTMLDivElement>) => {
-    if (searchTotal === movieList.length) return
-    const { scrollTop, scrollHeight, clientHeight } = event.currentTarget
-    if (clientHeight + scrollTop + 0.5 >= scrollHeight) {
-      if (!isFetching) {
-        setIsFetching(true)
-        addMovies()
-      }
-    }
-  }
+  const { ref, inView } = useInView({
+    threshold: 0,
+  })
 
-  useEffect(() => {
-    const el = ref.current
+  useMount(() => {
+    const el = containerRef.current
     if (el) {
       if (movieList.length <= 10 && page <= 2) el.scrollTop = 0
     }
   })
 
+  useEffect(() => {
+    if (inView) {
+      setPage((prev) => prev + 1)
+    }
+  }, [inView, setPage])
+
   return (
-    <div className={styles.movieList} onScroll={handleScroll} ref={ref}>
+    <div className={styles.movieList} ref={containerRef}>
       <ul>
         {movieList.map((movie: IMovie, idx: number) => {
           const key = `movie-${movie.imdbID}-${idx}`
@@ -53,7 +52,7 @@ const MovieList = ({ movieList, addMovies }: IProps) => {
         })}
       </ul>
       <div className={styles.loading}>
-        <div className={cx(styles.svgLoader, { [styles.hide]: movieList.length === searchTotal })}>
+        <div ref={ref} className={cx(styles.svgLoader, { [styles.hide]: movieList.length === searchTotal })}>
           <Loading size={0.5} />
         </div>
       </div>

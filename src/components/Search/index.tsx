@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, MouseEvent } from 'react'
+import { ChangeEvent, useState, MouseEvent, useCallback, useEffect } from 'react'
 import { useSetRecoilState, useRecoilState } from 'recoil'
 
 import { movieListState, pageState, searchTotalState, keywordState } from 'state/searchResult'
@@ -14,7 +14,7 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [keyword, setKeyword] = useRecoilState(keywordState)
   const setMovieList = useSetRecoilState(movieListState)
-  const setPage = useSetRecoilState(pageState)
+  const [page, setPage] = useRecoilState(pageState)
   const setSearcTotal = useSetRecoilState(searchTotalState)
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,29 +23,37 @@ const Search = () => {
     setSearchValue(targetValue)
   }
 
+  const fetchData = useCallback(() => {
+    const apikey = process.env.REACT_APP_MOVIE_API_KEY
+    return getMovieApi({
+      apikey,
+      s: keyword,
+      page,
+    })
+  }, [keyword, page])
+
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
     setKeyword(searchValue)
-    const apikey = process.env.REACT_APP_MOVIE_API_KEY
+    setPage((prev) => prev + 1)
+  }
+
+  useEffect(() => {
     try {
-      getMovieApi({
-        apikey,
-        s: searchValue,
-        page: 1,
-      }).then((res) => {
+      fetchData().then((res) => {
         if (res.data.Response === 'False') {
           setMovieList([])
           setSearcTotal(0)
         } else {
-          setMovieList(res.data.Search)
+          setMovieList((prev) => [...prev, ...res.data.Search])
           setSearcTotal(Number(res.data.totalResults))
         }
       })
-      setPage(2)
     } catch (error: any) {
+      setPage(1)
       Error('404')
     }
-  }
+  }, [fetchData, page, setMovieList, setPage, setSearcTotal])
 
   return (
     <div className={styles.search}>

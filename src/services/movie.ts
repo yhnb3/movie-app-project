@@ -9,7 +9,6 @@ interface Params {
   page: number
 }
 
-// 37.494958, 126.844128
 export const getMovieApi = (params: Params) =>
   axios.get<IMovieAPIRes>(`${MOVIE_BASE_URL}`, {
     params,

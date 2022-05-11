@@ -1,4 +1,4 @@
-import { DragEvent, MouseEvent, useState } from 'react'
+import { MouseEvent, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import cx from 'classnames'
 
@@ -17,8 +17,8 @@ interface IProps {
 const MovieItem = ({ movie, idx }: IProps) => {
   const favorites = useRecoilValue(favoriteState)
   const movieList = useRecoilValue(movieListState)
-  const setModal = useSetRecoilState(modalState)
-  const setSelectedMovie = useSetRecoilState(modalSelectedMovieState)
+  // const setModal = useSetRecoilState(modalState)
+  // const setSelectedMovie = useSetRecoilState(modalSelectedMovieState)
   const [isDragging, setIsDragging] = useState(false)
   const [pos, setPos] = useState([0, 0])
 
@@ -53,7 +53,6 @@ const MovieItem = ({ movie, idx }: IProps) => {
   return (
     <button
       type='button'
-      // draggable='true'
       className={cx(styles.movieItem, { [styles.dragging]: isDragging })}
       onMouseDown={handleDragStart}
       onMouseMove={handleDrag}

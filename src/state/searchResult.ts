@@ -8,7 +8,7 @@ export const movieListState = atom<IMovie[]>({
 
 export const pageState = atom<number>({
   key: 'pageState',
-  default: 1,
+  default: 0,
 })
 
 export const isFetchingState = atom<boolean>({
