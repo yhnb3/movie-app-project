@@ -1,16 +1,10 @@
 @use '/src/styles/constants/colors';
-@use '/src/styles/mixins/cursor';
 
 .movieItem {
   display: flex;
   height: 100px;
   background-color: colors.$GRAYE;
   border-radius: 5px;
-  @include cursor.grab;
-
-  &.dragging {
-    @include cursor.grabbing;
-  }
 
   .poster {
     width: 72px;

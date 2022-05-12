@@ -39,6 +39,7 @@ const Search = () => {
   }
 
   useEffect(() => {
+    if (page === 0) return
     try {
       fetchData().then((res) => {
         if (res.data.Response === 'False') {

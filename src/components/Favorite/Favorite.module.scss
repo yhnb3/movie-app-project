@@ -1,3 +1,5 @@
+@use '/src/styles/mixins/cursor';
+
 .favoriteTitle {
   padding: 5px;
   font-size: 30px;
@@ -13,6 +15,14 @@
   li {
     + li {
       margin-top: 10px;
+    }
+
+    .favoriteMovie {
+      @include cursor.grab;
+
+      &.dragging {
+        @include cursor.grabbing;
+      }
     }
   }
 }
