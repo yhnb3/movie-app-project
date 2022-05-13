@@ -1,5 +1,5 @@
-import { memo, useRef, useEffect, MouseEvent } from 'react'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { memo, useRef, useEffect } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { useInView } from 'react-intersection-observer'
 import { useMount } from 'hooks'
 import cx from 'classnames'
@@ -9,7 +9,6 @@ import { IMovie } from 'types/movie.d'
 import MovieItem from '../MovieItem'
 import Loading from '../Loading'
 import { pageState, searchTotalState } from 'state/searchResult'
-import { modalState, modalSelectedMovieState } from 'state/portalState'
 
 interface IProps {
   movieList: IMovie[]
@@ -19,8 +18,6 @@ const MovieList = ({ movieList }: IProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const searchTotal = useRecoilValue(searchTotalState)
   const [page, setPage] = useRecoilState(pageState)
-  const setModal = useSetRecoilState(modalState)
-  const setSelectedMovie = useSetRecoilState(modalSelectedMovieState)
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -39,12 +36,6 @@ const MovieList = ({ movieList }: IProps) => {
     }
   }, [inView, setPage])
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    const targetIdx = Number(event.currentTarget.dataset.idx)
-    setModal(true)
-    setSelectedMovie(movieList[targetIdx])
-  }
-
   return (
     <div className={styles.movieList} ref={containerRef}>
       <ul>
@@ -52,9 +43,7 @@ const MovieList = ({ movieList }: IProps) => {
           const key = `movie-${movie.imdbID}-${idx}`
           return (
             <li key={key}>
-              <button type='button' onClick={handleClick} data-idx={idx}>
-                <MovieItem movie={movie} idx={idx} />
-              </button>
+              <MovieItem movie={movie} idx={idx} />
             </li>
           )
         })}

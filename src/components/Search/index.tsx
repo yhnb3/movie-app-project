@@ -35,18 +35,23 @@ const Search = () => {
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
     setKeyword(searchValue)
-    setPage((prev) => prev + 1)
+    setMovieList([])
+    setPage(1)
   }
 
   useEffect(() => {
-    if (page === 0) return
     try {
       fetchData().then((res) => {
         if (res.data.Response === 'False') {
           setMovieList([])
           setSearcTotal(0)
         } else {
-          setMovieList((prev) => [...prev, ...res.data.Search])
+          setMovieList((prev) => {
+            if (page <= Math.ceil(prev.length / 10)) {
+              return prev
+            }
+            return [...prev, ...res.data.Search]
+          })
           setSearcTotal(Number(res.data.totalResults))
         }
       })
