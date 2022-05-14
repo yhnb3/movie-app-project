@@ -1,11 +1,13 @@
+import { memo } from 'react'
 import { useRecoilValue } from 'recoil'
 
 import styles from './search.module.scss'
 
-import { movieListState } from 'state/searchResult'
+import { isLoadingState, movieListState } from 'state/searchResult'
 
 import MovieList from '../MovieList'
 import NoResult from '../NoResult'
+import FirstLoading from './FirstLoading'
 
 interface IProps {
   keyword: string
@@ -13,8 +15,10 @@ interface IProps {
 
 const SearchContainer = ({ keyword }: IProps) => {
   const movieList = useRecoilValue(movieListState)
+  const isLoading = useRecoilValue(isLoadingState)
 
   if (movieList.length === 0) {
+    if (isLoading) return <FirstLoading />
     if (keyword === '') return <NoResult title='검색 결과가 없습니다.' />
     return (
       <div className={styles.searchContainer}>
@@ -35,4 +39,4 @@ const SearchContainer = ({ keyword }: IProps) => {
   )
 }
 
-export default SearchContainer
+export default memo(SearchContainer)

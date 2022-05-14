@@ -1,7 +1,7 @@
 import { ChangeEvent, useState, MouseEvent, useCallback, useEffect } from 'react'
 import { useSetRecoilState, useRecoilState } from 'recoil'
 
-import { movieListState, pageState, searchTotalState, keywordState } from 'state/searchResult'
+import { movieListState, pageState, searchTotalState, keywordState, isLoadingState } from 'state/searchResult'
 
 import styles from './search.module.scss'
 import { SearchIcon } from 'assets/svgs'
@@ -12,6 +12,7 @@ import SearchContainer from './SearchContainer'
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState<string>('')
+  const setIsLoading = useSetRecoilState(isLoadingState)
   const [keyword, setKeyword] = useRecoilState(keywordState)
   const setMovieList = useSetRecoilState(movieListState)
   const [page, setPage] = useRecoilState(pageState)
@@ -34,12 +35,14 @@ const Search = () => {
 
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
+    if (keyword === searchValue) return
     setKeyword(searchValue)
     setMovieList([])
     setPage(1)
+    setIsLoading(true)
   }
-
   useEffect(() => {
+    if (page === 0) return
     try {
       fetchData().then((res) => {
         if (res.data.Response === 'False') {
@@ -54,12 +57,14 @@ const Search = () => {
           })
           setSearcTotal(Number(res.data.totalResults))
         }
+        setIsLoading(false)
       })
     } catch (error: any) {
       setPage(1)
       Error('404')
+      setIsLoading(false)
     }
-  }, [fetchData, page, setMovieList, setPage, setSearcTotal])
+  }, [fetchData, page, setIsLoading, setMovieList, setPage, setSearcTotal])
 
   return (
     <div className={styles.search}>

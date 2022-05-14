@@ -1,5 +1,5 @@
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useClickAway } from 'hooks'
 import store from 'store'
 
@@ -23,20 +23,24 @@ const Item = ({ movie }: IProps) => {
   const isFav = favorites.find((favoriteMovie: IMovie) => favoriteMovie.imdbID === movie.imdbID)
   const handleFavorite = () => {
     if (isFav) {
-      setFavorites((prevList) => prevList.filter((prevMovie) => movie.imdbID !== prevMovie.imdbID))
+      setFavorites((prevList) => {
+        const nextList = prevList.filter((prevMovie) => movie.imdbID !== prevMovie.imdbID)
+        store.set('favorites', nextList)
+        return nextList
+      })
       setModal(false)
     } else {
-      setFavorites((prveList) => [...prveList, { ...movie, isFav: true }])
+      setFavorites((prveList) => {
+        const nextList = [...prveList, { ...movie, isFav: true }]
+        store.set('favorites', nextList)
+        return nextList
+      })
     }
   }
 
   const handleExitClick = () => {
     setModal(false)
   }
-
-  useEffect(() => {
-    store.set('favorites', favorites)
-  }, [favorites])
 
   useClickAway(itemRef, () => {
     setModal(false)

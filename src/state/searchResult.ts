@@ -11,8 +11,8 @@ export const pageState = atom<number>({
   default: 0,
 })
 
-export const isFetchingState = atom<boolean>({
-  key: 'isFetchingState',
+export const isLoadingState = atom<boolean>({
+  key: 'isLoadingState',
   default: false,
 })
 

@@ -60,11 +60,6 @@ const FavoriteContainer = () => {
     })
     setActiveId(null)
   }
-  // const handleClick = (event: MouseEvent<HTMLDivElement>) => {
-  //   const targetIdx = Number(event.currentTarget.dataset.id)
-  //   setSelectedMovie(favorites[targetIdx])
-  //   setModal(true)
-  // }
 
   if (favorites.length === 0) return <NoResult title='즐겨찾기가 비었습니다.' />
   return (
