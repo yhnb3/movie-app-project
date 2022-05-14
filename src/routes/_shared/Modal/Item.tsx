@@ -3,11 +3,12 @@ import { useRef } from 'react'
 import { useClickAway } from 'hooks'
 import store from 'store'
 
-import styles from './Modal.module.scss'
 import { favoriteState } from 'state/favoriteState'
 import { modalState } from 'state/portalState'
 import { IMovie } from 'types/movie'
 import { HeartFillIcon, HeartEmptyIcon, Plus } from 'assets/svgs'
+
+import styles from './Modal.module.scss'
 
 interface IProps {
   movie: IMovie
