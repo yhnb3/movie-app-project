@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import cx from 'classnames'
 
-import styles from './gnb.module.scss'
+import styles from './Gnb.module.scss'
 
 const Footer = () => {
   return (

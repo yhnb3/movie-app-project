@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useRecoilValue } from 'recoil'
 
-import styles from './search.module.scss'
+import styles from './Search.module.scss'
 
 import { isLoadingState, movieListState } from 'state/searchResult'
 

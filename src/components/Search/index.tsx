@@ -3,7 +3,7 @@ import { useSetRecoilState, useRecoilState } from 'recoil'
 
 import { movieListState, pageState, searchTotalState, keywordState, isLoadingState } from 'state/searchResult'
 
-import styles from './search.module.scss'
+import styles from './Search.module.scss'
 import { SearchIcon } from 'assets/svgs'
 
 import { getMovieApi } from 'services/movie'

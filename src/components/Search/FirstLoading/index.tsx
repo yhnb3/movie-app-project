@@ -1,5 +1,5 @@
 import Loading from 'components/Loading'
-import styles from './firstLoading.module.scss'
+import styles from './FirstLoading.module.scss'
 
 const FirstLoading = () => {
   return (

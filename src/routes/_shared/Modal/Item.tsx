@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { useClickAway } from 'hooks'
 import store from 'store'
 
-import styles from './modal.module.scss'
+import styles from './Modal.module.scss'
 import { favoriteState } from 'state/favoriteState'
 import { modalState } from 'state/portalState'
 import { IMovie } from 'types/movie'
