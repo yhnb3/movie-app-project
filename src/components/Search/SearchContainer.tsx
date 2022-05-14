@@ -1,13 +1,13 @@
 import { memo } from 'react'
 import { useRecoilValue } from 'recoil'
 
-import styles from './Search.module.scss'
-
 import { isLoadingState, movieListState } from 'state/searchResult'
 
 import MovieList from '../MovieList'
 import NoResult from '../NoResult'
 import FirstLoading from './FirstLoading'
+
+import styles from './search.module.scss'
 
 interface IProps {
   keyword: string

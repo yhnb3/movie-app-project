@@ -8,7 +8,7 @@ import { modalState } from 'state/portalState'
 import { IMovie } from 'types/movie'
 import { HeartFillIcon, HeartEmptyIcon, Plus } from 'assets/svgs'
 
-import styles from './Modal.module.scss'
+import styles from './modal.module.scss'
 
 interface IProps {
   movie: IMovie

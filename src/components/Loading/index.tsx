@@ -1,4 +1,4 @@
-import styles from './Loading.module.scss'
+import styles from './loading.module.scss'
 import cx from 'classnames'
 
 interface IProps {

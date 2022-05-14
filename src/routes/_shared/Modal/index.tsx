@@ -2,7 +2,7 @@ import { IMovie } from 'types/movie'
 import Portal from './Portal'
 import Item from './Item'
 
-import styles from './Modal.module.scss'
+import styles from './modal.module.scss'
 
 interface IProps {
   movie: IMovie

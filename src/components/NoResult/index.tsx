@@ -1,5 +1,5 @@
-import styles from './NoResult.module.scss'
-import { Plus } from '../../assets/svgs'
+import styles from './noResult.module.scss'
+import { Plus } from 'assets/svgs'
 
 interface IProps {
   title: string

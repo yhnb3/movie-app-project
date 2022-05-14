@@ -4,11 +4,12 @@ import { useInView } from 'react-intersection-observer'
 import { useMount } from 'hooks'
 import cx from 'classnames'
 
-import styles from './MovieList.module.scss'
 import { IMovie } from 'types/movie.d'
 import MovieItem from '../MovieItem'
 import Loading from '../Loading'
 import { pageState, searchTotalState } from 'state/searchResult'
+
+import styles from './movieList.module.scss'
 
 interface IProps {
   movieList: IMovie[]

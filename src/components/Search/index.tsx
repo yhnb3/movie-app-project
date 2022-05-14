@@ -3,12 +3,13 @@ import { useSetRecoilState, useRecoilState } from 'recoil'
 
 import { movieListState, pageState, searchTotalState, keywordState, isLoadingState } from 'state/searchResult'
 
-import styles from './Search.module.scss'
 import { SearchIcon } from 'assets/svgs'
 
 import { getMovieApi } from 'services/movie'
 
 import SearchContainer from './SearchContainer'
+
+import styles from './search.module.scss'
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState<string>('')
