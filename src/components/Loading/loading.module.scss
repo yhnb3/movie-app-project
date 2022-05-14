@@ -1,0 +1,40 @@
+@use '/src/styles/constants/colors';
+
+.loaderSvg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  fill: none;
+  stroke: colors.$BLACK;
+  stroke-linecap: round;
+  stroke-width: 5px;
+
+  &.bg {
+    stroke: colors.$GRAYE;
+    stroke-width: 8px;
+  }
+
+  &.animate {
+    stroke-dasharray: 242.6;
+    animation: fillAnimation 0.8s cubic-bezier(1, 1, 1, 1) 0s infinite;
+  }
+}
+
+@keyframes fillAnimation {
+  0% {
+    stroke-dasharray: 40 242.6;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 141.3;
+    stroke-dashoffset: 141.3;
+  }
+
+  100% {
+    stroke-dasharray: 40 242.6;
+    stroke-dashoffset: 282.6;
+  }
+}

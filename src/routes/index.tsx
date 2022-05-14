@@ -3,7 +3,7 @@ import { useSetRecoilState, useRecoilValue } from 'recoil'
 import { useMount } from 'react-use'
 import store from 'store'
 
-import styles from './Routes.module.scss'
+import styles from './routes.module.scss'
 import { favoriteState } from 'state/favoriteState'
 import { modalState, modalSelectedMovieState } from 'state/portalState'
 import { Search, Favorite } from 'components'

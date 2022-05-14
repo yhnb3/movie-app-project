@@ -9,7 +9,7 @@ import { getMovieApi } from 'services/movie'
 
 import SearchContainer from './SearchContainer'
 
-import styles from './Search.module.scss'
+import styles from './search.module.scss'
 
 const Search = () => {
   const [searchValue, setSearchValue] = useState<string>('')

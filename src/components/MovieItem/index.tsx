@@ -7,7 +7,7 @@ import { IMovie } from 'types/movie.d'
 import { HeartFillIcon, HeartEmptyIcon } from 'assets/svgs'
 import { movieListState } from 'state/searchResult'
 
-import styles from './MovieItem.module.scss'
+import styles from './movieItem.module.scss'
 
 interface IProps {
   movie: IMovie

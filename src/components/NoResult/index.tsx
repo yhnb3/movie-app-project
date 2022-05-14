@@ -1,4 +1,4 @@
-import styles from './NoResult.module.scss'
+import styles from './noResult.module.scss'
 import { Plus } from 'assets/svgs'
 
 interface IProps {

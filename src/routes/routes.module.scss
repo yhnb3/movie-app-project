@@ -1,0 +1,29 @@
+@use '/src/styles/constants/colors';
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: colors.$GRAYE;
+
+  .container {
+    position: relative;
+    width: 360px;
+    height: 720px;
+    background-color: colors.$WHITE;
+    border-radius: 20px;
+
+    main {
+      height: 90%;
+      padding: 40px 20px;
+      background-color: colors.$WHITE;
+      border-radius: 20px;
+    }
+
+    footer {
+      height: 10%;
+    }
+  }
+}
