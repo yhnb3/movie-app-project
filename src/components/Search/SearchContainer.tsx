@@ -7,7 +7,7 @@ import MovieList from '../MovieList'
 import NoResult from '../NoResult'
 import FirstLoading from './FirstLoading'
 
-import styles from './search.module.scss'
+import styles from './Search.module.scss'
 
 interface IProps {
   keyword: string
