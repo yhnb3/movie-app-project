@@ -14,6 +14,7 @@
 
 - React
 - typescript
+- Recoil
 - Scss
 
 ### 로컬에서 실행 방법
