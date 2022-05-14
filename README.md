@@ -24,7 +24,12 @@
 REACT_APP_MOVIE_API_KEY=API키등록 ('' 없이 입력)
 ```
 
-[키 발급 사이트](https://www.omdbapi.com/)에서 개인 api키를 발급 가능합니다.
+[키 발급 사이트](https://www.omdbapi.com/)에서 개인 API키를 발급 가능합니다.
+
+```bash
+npm i     
+npm start
+```
 
 
 ### 기능 구현
