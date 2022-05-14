@@ -2,6 +2,8 @@
 
 영화 검색 및 즐겨 찾기를 관리 할 수 있는 앱입니다.
 
+#### [구경하기]([movie-app-project-vert.vercel.app](https://movie-app-project-vert.vercel.app/))
+
 ### 개발 기간
 
 2022.5.9 ~ 2022.5.14
