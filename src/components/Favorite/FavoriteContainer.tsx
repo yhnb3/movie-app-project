@@ -6,7 +6,7 @@ import { restrictToFirstScrollableAncestor, restrictToVerticalAxis } from '@dnd-
 import store from 'store'
 
 import { favoriteState } from 'state/favoriteState'
-import styles from './favorite.module.scss'
+import styles from './Favorite.module.scss'
 import NoResult from 'components/NoResult'
 import { IMovie } from 'types/movie'
 import MovieItem from '../MovieItem'
